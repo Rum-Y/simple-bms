@@ -30,5 +30,13 @@
 |——
 |—— 或删除或注释了前端源代码中岗位、部门、数据范围相关的源代码，移除了角色分配数据范围功能。
 ```
-
+## 运行效果图
+1. 可以发现菜单项的岗位和部门管理已经没有了，还有就是用户管理界面左侧的部门也没有了
+![image](https://github.com/user-attachments/assets/62d5eb30-4652-4417-b631-544c80222c9d)
+2. 角色管理界面这里数据权限范围分配这里已经没有了
+![image](https://github.com/user-attachments/assets/8175a59a-fd24-49e6-8fc7-2641515c4560)
+3. 最主要的是想要保留的日志和代码生成这些核心常用功能都不会因为做出的修改影响使用，侧面说明若依的各功能模块的解耦设计是真挺不错的
+![image](https://github.com/user-attachments/assets/28ea0ff0-4414-45a3-ae82-a0d078bf6bc8)
+![image](https://github.com/user-attachments/assets/9d8f66ad-4570-4c08-8a90-6d247e806673)
+![image](https://github.com/user-attachments/assets/534e780f-1df0-4327-84e6-048811b44744)
 注：改造工作将在闲暇时间持续进行，也欢迎感兴趣的爱好者发挥聪明才智一起进行改造（不局限于消除工作，你懂得），将这个想法同MIT协议一样一直公开开源下去
