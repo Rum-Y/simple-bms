@@ -23,4 +23,4 @@
 hs_err_pid*
 replay_pid*
 
-application-druid.yml
+simple-bms-back/ruoyi-admin/src/main/resources/application-druid.yml
