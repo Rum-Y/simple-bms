@@ -180,4 +180,9 @@ public class Constants
      * APP接口前缀
      */
     public static final String APP_URI = "/app/";
+
+    /**
+     * 七牛云资源映射路径 前缀
+     */
+    public static final String OSSRESOURCE_PREFIX = "/ossProfile";
 }

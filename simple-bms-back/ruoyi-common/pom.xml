@@ -17,6 +17,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.4.1</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- Spring框架基本的核心工具 -->
         <dependency>
             <groupId>org.springframework</groupId>

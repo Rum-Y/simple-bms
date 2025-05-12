@@ -9,6 +9,10 @@ spring:
                 url: jdbc:mysql://localhost:3307/review_ai?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                 username:
                 password:
+#            master:
+#                url: jdbc:mysql://localhost:3306/review_ai?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+#                username: root
+#                password: root
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭
@@ -59,3 +63,11 @@ spring:
                 wall:
                     config:
                         multi-statement-allow: true
+
+# 七牛云相关配置
+qiniu:
+    accessKey: "七牛云的accessKey"
+    secretKey: "七牛云的secretKey"
+    bucketName: "七牛云的存储名"
+    domain: "七牛云的配置好的CDN链接"
+    fileAccess: "http://"
