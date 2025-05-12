@@ -1,13 +1,23 @@
 package com.ruoyi.framework.config;
 
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * redis配置
@@ -65,5 +75,30 @@ public class RedisConfig extends CachingConfigurerSupport
                 "    redis.call('expire', key, time)\n" +
                 "end\n" +
                 "return tonumber(current);";
+    }
+
+    //我自定义的缓存管理器
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory factory) {
+        //统一设置ttl为60秒
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
+                .serializeValuesWith(RedisSerializationContext.SerializationPair
+                        .fromSerializer(new FastJson2JsonRedisSerializer<>(Object.class)))
+                .entryTtl(Duration.ofSeconds(60));
+
+        // 针对不同key可以个性化设置
+        Set<String> cacheNames = new HashSet<>();
+        cacheNames.add("userCache");
+
+        // 对每个缓存空间应用不同的配置
+        Map<String, RedisCacheConfiguration> configMap = new HashMap<>();
+        configMap.put("userCache", config.entryTtl(Duration.ofSeconds(120)));
+
+        return RedisCacheManager
+                .builder(factory)
+                .cacheDefaults(config)
+                .initialCacheNames(cacheNames)
+                .withInitialCacheConfigurations(configMap)
+                .build();
     }
 }
